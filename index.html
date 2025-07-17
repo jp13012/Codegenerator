@@ -1,0 +1,66 @@
+
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <title>Codegenerator (Automatisch)</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9fafb;
+            margin: 0;
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .container {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            width: 90%;
+            max-width: 500px;
+            text-align: center;
+        }
+        h2 {
+            margin-bottom: 10px;
+        }
+        .code-display {
+            font-size: 2rem;
+            margin-top: 20px;
+            color: #007BFF;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Huidige Code</h2>
+        <div id="code" class="code-display">...</div>
+        <p id="tijdinfo"></p>
+    </div>
+
+    <script>
+        function berekenCode(dag, uur) {
+            let totaal = dag + uur + 2;
+            let omgedraaid = totaal.toString().padStart(2, '0').split('').reverse().join('');
+            let g2 = parseInt(omgedraaid[0]);
+            let g3 = parseInt(omgedraaid[1]);
+            let g1 = (g2 - 1 + 10) % 10;
+            let g4 = (g3 + 1) % 10;
+            return `${g1}${g2}${g3}${g4}`;
+        }
+
+        window.onload = function() {
+            const amsterdamTime = new Date().toLocaleString("nl-NL", {timeZone: "Europe/Amsterdam"});
+            const datum = new Date(amsterdamTime);
+            const dag = datum.getDate();
+            const uur = datum.getHours();
+
+            const code = berekenCode(dag, uur);
+            document.getElementById("code").innerText = code;
+            document.getElementById("tijdinfo").innerText = `Amsterdam: dag ${dag}, uur ${uur}`;
+        };
+    </script>
+</body>
+</html>
