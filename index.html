@@ -2,6 +2,18 @@
 <!DOCTYPE html>
 <html lang="nl">
 <head>
+    <body>
+  <script>
+    const correctPassword = "4824"; // ← vervang dit met jouw gewenste toegangscode
+
+    const toegang = prompt("Voer toegangscode in:");
+
+    if (toegang !== correctPassword) {
+      document.body.innerHTML = "<h2 style='color: red;'>Toegang geweigerd</h2>";
+      throw new Error("Verkeerde toegangscode");
+    }
+  </script>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Code Generator</title>
